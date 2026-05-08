@@ -1,3 +1,5 @@
+<img width="100" height="63" alt="bf-bf3" src="https://github.com/user-attachments/assets/7d69d1f5-e592-4500-9307-c28943034f50" />
+
 # Funky.mit-engine
 <img width="1196" height="698" alt="image" src="https://github.com/user-attachments/assets/c7c25d6d-0d89-4255-bd4c-71ec8e873bae" />
 
