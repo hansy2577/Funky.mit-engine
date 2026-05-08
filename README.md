@@ -1,5 +1,7 @@
 # Funky.mit-engine
-<img width="806" height="477" alt="image" src="https://github.com/user-attachments/assets/1cd6e172-a2c6-441d-86d1-c68a1efc1bf4" />
+<img width="1196" height="698" alt="image" src="https://github.com/user-attachments/assets/c7c25d6d-0d89-4255-bd4c-71ec8e873bae" />
+
+
 pysch engine but in html js !!1!!1!11
 <br><br>
 
