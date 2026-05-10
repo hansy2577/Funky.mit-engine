@@ -1,0 +1,14 @@
+{
+    "selected":["test","bipBoop"],
+
+    "gameplay": {
+        "key":["your game key",
+        ["q","s","l","m"]],
+        
+        "editor key":["custom key touche for go to the editor",
+        ["chart editor :",["E","7"]]],
+        
+        "potato mods": ["",
+        [true]]
+    }
+}

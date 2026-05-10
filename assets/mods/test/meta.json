@@ -1,0 +1,18 @@
+{
+  "mods alt name":"test",
+  "description":"best test mods for ever !!1!11!1",
+  
+  
+  "assets":{
+    "note":"Images/notes/Arrow.svg",
+    "custom Pause title text":"Pause !"
+  },
+      
+  "song":[
+    "bipBoop",
+    "oppopo",
+    "yo"
+  ],
+      
+  "characters":["BF"]
+}
