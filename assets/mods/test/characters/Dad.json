@@ -1,0 +1,42 @@
+{
+  "alt name":"dad",
+  "src": "Dad",
+  "icon": "dad",
+  "position": [0,0],
+  "scale": 1.3,
+  
+  "animations":{
+    
+    "Neutre":{
+      "anim": "N",
+      "length": 2,
+      "speed": 40
+    },
+    
+    "L":{
+      "anim": "L",
+      "length": 1,
+      "speed": 40
+    },
+
+    "U":{
+      "anim": "U",
+      "length": 1,
+      "speed": 40
+    },
+
+    "D":{
+      "anim": "D",
+      "length": 1,
+      "speed": 40
+    },
+    
+    "R":{
+      "anim": "R",
+      "length": 1,
+      "speed": 40
+    }
+
+
+  }
+}
