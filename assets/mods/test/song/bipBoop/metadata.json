@@ -1,0 +1,29 @@
+{
+    "song type": [".ogg"],
+    "chart type":"both",
+    "is Voice": true,
+    "is Voice2":true,
+    
+    "assets": {
+        "bf":["BF",400,80,1],
+        "gf":["euh",0,5,1],
+        "dad":["dad",100,80,1],
+        
+        "cam":{ "bf":[-100,0], "Dad":[50,10] },
+        "cam speed": 4,
+        
+        "notes skin":[["Images/notes/default/Arrow.png", 0.25],["Images/notes/default/notes", 0.24]],
+        "long notes":["Images/notes/default/long", 0.25],
+        "note splash":["Images/notes/default/splash.png", 0.4,100,{ "auto animate":true }],
+      
+        "BG":["Images/background/defaut map.svg", 0, 0, 1.5]
+    },
+
+    "chart": {
+        "BPM": 100,
+        "speed": 2,
+        
+        "Inst volume":0.9,
+        "Voice volume":0.9
+    }
+}
