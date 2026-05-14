@@ -35,10 +35,11 @@ probably more later
 # check list:
 
 - [ ] have a contributor for help
-- [ ] add Dad 
+- [x] add Dad 
 - [x] add healthBar
+- [ ] add all FNF source
 - [ ] add options tab
 - [ ] better default mods 
 - [ ] cutscene system
-- [ ] funny music
+- [ ] funny song
   
