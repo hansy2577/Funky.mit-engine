@@ -1,7 +1,9 @@
 // script create an animation using only inserted images. 
 
+/*
 makeLocalAnim("euuuuuh","mods/test/characters/BF/L",3,0,0,1,"body",60,true)
 playLocalAnim("euuuuuh")
+*/
 
 function stopLocalAnim(name) {
   document.getElementById(name + " folder").style.left = "0.1px";
@@ -44,8 +46,6 @@ function makeLocalAnim(name,animScr,animLength, x,y,s,putIn,speed,isLoop) {
     
       console.log(""+thing.src + " | "+animScr+" create")
     }
-
-  // make boyfriend all anim
   
   var animate = {
     i: 0,
