@@ -1,11 +1,17 @@
 // script create an animation using only inserted images. 
 
-/*
 makeLocalAnim("euuuuuh","mods/test/characters/BF/L",3,0,0,1,"body",60,true)
 playLocalAnim("euuuuuh")
-*/
 
-function stopLocalAnim(name) {
+setInterval(() => {
+  stopLocalAnim("euuuuuh",false)
+},1000)
+
+function removeLocalAnim(name) {
+  // not done yet
+}
+
+function stopLocalAnim(name,afterEnd) {
   document.getElementById(name + " folder").style.left = "0.1px";
 }
 
@@ -46,6 +52,8 @@ function makeLocalAnim(name,animScr,animLength, x,y,s,putIn,speed,isLoop) {
     
       console.log(""+thing.src + " | "+animScr+" create")
     }
+
+  // make boyfriend all anim
   
   var animate = {
     i: 0,
@@ -116,5 +124,11 @@ function makeLocalAnim(name,animScr,animLength, x,y,s,putIn,speed,isLoop) {
       document.getElementById(name + " folder").style.top = "0px";
       document.getElementById(name + animate.i).style.visibility = "visible";
     }
+
+    if (document.getElementById(name + " folder").style.left == "0.1px") {
+      clearInterval(animLoop)
+      document.getElementById(name + " folder").style.top = "0px";
+    }
+
   },0)
 }
