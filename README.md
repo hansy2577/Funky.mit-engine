@@ -4,10 +4,10 @@
 <img width="1196" height="698" alt="image" src="https://github.com/user-attachments/assets/c7c25d6d-0d89-4255-bd4c-71ec8e873bae" />
 
 
-pysch engine but in html js !!1!!1!11
+_Pysch engine but re-code in HTML JS !!1!!1!11_
 <br><br>
 
-**Funky.mit.engine** (or F.M engine) it a engine inspired by [Pysch engine](https://e) and [FNF-PlusEngine](https://github.com/Psych-Plus-Team/FNF-PlusEngine) <br>
+**Funky.mit.engine** (or F.M engine) it a engine inspired by [Pysch engine](https://e) and [FNF-PlusEngine](https://github.com/Psych-Plus-Team/FNF-PlusEngine) but recode in brute with no extensions !<br>
 before, it was my little favorite engine i made just for me in [scratch](https://scratch.mit.edu).
 
 # feature :
