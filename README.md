@@ -1,7 +1,7 @@
 
 # Funky.mit-engine
 
-<img width="1196" height="698" alt="image" src="https://github.com/hansy2577/Funky.mit-engine/main/other/screenshots/1.4 gameplay.png" />
+<img width="1196" height="698" alt="image" src="https://github.com/hansy2577/Funky.mit-engine/blob/main/other/screenshots/1.4 gameplay.png" />
 
 
 _Pysch engine but re-code in HTML JS !!1!!1!11_
