@@ -1,1 +1,1 @@
-
+## welcome to HJ engine ( the script part of funky.mit )
