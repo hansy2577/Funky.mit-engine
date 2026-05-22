@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" href="icon.ico">
+  <title id="title">Funky.mit Engine</title>
+  <!-- PC version -->
+
+  <link rel="stylesheet" href="">
+</head>
+
+<body>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <iframe src="assets/start-screen.html" scrolling="no" height="355" width="600" style="border: 0px solid white; scale: 1.8;"></iframe>
+  
+  <!-- Project -->
+  <script>
+  setInterval(() => {
+    if (sessionStorage.getItem("game close") == "true") {
+      window.close()
+      document.body.remove()
+    }
+    
+    if (document.getElementById("title").innerText !== sessionStorage.getItem("game title")) {
+      document.getElementById("title").innerText = sessionStorage.getItem("game title");
+    }
+  },1)
+  </script>
+  <script src="assets/script/main/indexStat.js"></script>
+
+  
+  <style type="text/css" media="all">
+    body { text-align: center; background-color: black; }
+  </style>
+</body>
+</html>
