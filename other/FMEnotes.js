@@ -29,3 +29,15 @@ setInterval(() => {
   euh.volume = 0.5;
   euh.play()
 },eu)
+
+// pretty like a function folder
+
+class Name {
+  constructor(hello) {
+    this.hello2 = hello
+  }
+  
+}
+
+var euh = new Name("hello !").hello2
+alert(euh)
