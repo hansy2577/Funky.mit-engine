@@ -10,3 +10,22 @@ function fpsToMS(fps) {
 }
 
 fpsToMS(59)
+
+// new BPM
+
+
+function bpm(bpmm) {
+    const quarterMs = 60000 / bpmm;
+    return quarterMs;
+}
+
+var eu = bpm(200)
+var euh = new Audio("/week 1 .mp3")
+euh.volume = 1;
+euh.play()
+
+setInterval(() => {
+  var euh = new Audio("z.mp3")
+  euh.volume = 0.5;
+  euh.play()
+},eu)
