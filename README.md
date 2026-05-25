@@ -43,7 +43,7 @@ probably more later
 - [x] add Dad 
 - [x] add healthBar
 - [ ] add all FNF source
-- [ ] add options tab
+- [x] add options tab
 - [ ] better default mods 
 - [ ] cutscene system
 - [ ] funny song
