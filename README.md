@@ -15,12 +15,13 @@ before, it was my little favorite engine i made just for me in [scratch](https:/
 
 # feature :
 * simple script function ( inpired by **Pysch engine** and **Haxeflixel** ):
-<img width="735" height="143" alt="image" src="https://github.com/user-attachments/assets/5e864549-20f2-4993-9720-c05d8bd5b247" />
+<img width="673" height="494" alt="IMG_20260604_184239" src="https://github.com/user-attachments/assets/b1e5e060-f3c9-4467-982b-bb05a46ef17f" />
+
 
 <br><br>
 
 * redisign/fixe of the mods and song system
-<img width="183" height="146" alt="image" src="https://github.com/user-attachments/assets/e5f2cfda-f85c-409c-9fd8-86e8e2a228ee" />
+<img width="138" height="226" alt="IMG_20260604_184340" src="https://github.com/user-attachments/assets/b188c99c-28df-4afe-b45d-7b2cdf708bba" />
 
 <br><br>
 
@@ -44,7 +45,7 @@ probably more later
 - [x] add healthBar
 - [ ] add all FNF source
 - [x] add options tab
-- [ ] better default mods 
+- [x] better default mods 
 - [ ] cutscene system
 - [ ] funny song
   
