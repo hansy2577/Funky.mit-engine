@@ -21,7 +21,7 @@ before, it was my little favorite engine i made just for me in [scratch](https:/
 <br><br>
 
 * redisign/fixe of the mods and song system
-<img width="138" height="226" alt="IMG_20260604_184340" src="https://github.com/user-attachments/assets/b188c99c-28df-4afe-b45d-7b2cdf708bba" />
+<img width="208" height="326" alt="IMG_20260604_184340" src="https://github.com/user-attachments/assets/b188c99c-28df-4afe-b45d-7b2cdf708bba" />
 
 <br><br>
 
