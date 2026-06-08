@@ -124,8 +124,7 @@ ScreenBeat(1.05,2)    // make game beat ,'disable in v2.7- for octimisation prob
 
 ```
 
-<br><br>
-
+## other feature
 * redisign/fixe of the mods and song system
 <img width="208" height="326" alt="IMG_20260604_184340" src="https://github.com/user-attachments/assets/b188c99c-28df-4afe-b45d-7b2cdf708bba" />
 
