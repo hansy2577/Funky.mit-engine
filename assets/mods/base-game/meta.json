@@ -1,0 +1,44 @@
+{
+  "mods alt name":"just a test",
+  "version":"0.1",
+  "description":"best test mods for ever !!1!11!1",
+  
+  
+  "assets":{
+    "note":"images/notes/Arrow.svg",
+    "custom Pause title text":"Pause !"
+  },
+      
+  "song":{
+    "list":[
+      "week1-bipBoop",
+      "week1-fresh",
+      "week1-dad-battle",
+      
+      "week2-spookeez",
+      "week2-south",
+      "week2-monster",
+      
+"ted-talk",
+      "argument",
+      "disruption"
+    ],
+    
+    "data": {
+      "week1-bipBoop":{ "name":"bipBoop", "color":"purple", "icon": "bf", "difficulties": ["hard","erect"], "week name": "week 1" },
+      "week1-fresh":{ "name":"fresh", "color":"purple", "icon": "bf", "difficulties": ["hard","erect"], "week name": "week 1" },
+      "week1-dad-battle":{ "name":"dad-battle", "color":"purple", "icon": "bf", "difficulties": ["hard","erect"], "week name": "week 1" },
+      
+      "week2-spookeez":{ "name":"spookeez", "color":"#FFB632", "icon": "bf", "difficulties": ["normal","erect"], "week name": "week 1" },
+      "week2-south":{ "name":"south", "color":"#FFB632", "icon": "bf", "difficulties": ["normal","erect"], "week name": "week 1" },
+      "week2-monster":{ "name":"monster", "color":"#FFB632", "icon": "bf", "difficulties": ["normal"], "week name": "week 1" },
+
+      "argument":{ "name":"argument", "color":"pink", "icon": "bf", "difficulties": ["normal"], "week name": "week 1" },
+      "disruption":{ "name":"disruption", "color":"green", "icon": "bf", "difficulties": ["bambi"], "week name": "week 1" },
+"ted-talk":{ "name":"teddy", "color":"orange", "icon": "bf", "difficulties": ["teddy"], "week name": "week 1" }
+
+    }
+  },
+  
+  "characters":["BF"]
+}

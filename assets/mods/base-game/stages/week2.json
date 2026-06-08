@@ -1,0 +1,14 @@
+{
+  "src":"images/stages/week2/default.png",
+  
+  "scale":0.4,
+  "position":[-900,-500],
+  
+  "cam":{ "bf":[-100,-5], "Dad":[50,-10] },
+  
+  "characters":{
+    "bf":[400,115,1],
+    "gf":[250,85,1],
+    "dad":[100,115,1]
+  }
+}
