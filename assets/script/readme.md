@@ -1,3 +1,3 @@
-> welcome to HJ engine ( the name of the script part of funky.mit 
+welcome to **Funky.mit-engine scripts**, script part of the engine
 
-_**warning :**_ it pretty a pastas code xd
+> _**warning :**_ it pretty a pastas code xd
