@@ -12,7 +12,7 @@ ____
 
 **Funky.mit.engine** (or F.M engine) it a engine inspired by [Pysch engine](https://e) and [FNF-PlusEngine](https://github.com/Psych-Plus-Team/FNF-PlusEngine) but recode in **JavaScript** brute with no extensions !<br>. Before, it was my little favorite engine i made just for me in [scratch](https://scratch.mit.edu).
 
-# feature :
+# features :
 * simple script function ( inpired by **Pysch engine** and **Haxeflixel** ):
 
 ## make a simple cube :
@@ -44,7 +44,7 @@ myCube.style.top = "0px";
 var myImage = FMS_makeImage("a image","GAME","/images/myImage.png",0,0,1,1)
 ```
 
-## game value :
+## game values :
 > subject to change
 > there not all value
 
@@ -124,7 +124,7 @@ ScreenBeat(1.05,2)    // make game beat ,'disable in v2.7- for octimisation prob
 
 ```
 
-## other feature
+## other features
 * redisign/fixe of the mods and song system
 <img width="208" height="326" alt="IMG_20260604_184340" src="https://github.com/user-attachments/assets/b188c99c-28df-4afe-b45d-7b2cdf708bba" />
 
