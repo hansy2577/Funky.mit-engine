@@ -1,1 +1,3 @@
 license for the **python and other** use the .exe, HTML, runTime etc...
+
+> not mandatory, you just have to use the system .exe to modify it via the **source** and **index.html** :]
