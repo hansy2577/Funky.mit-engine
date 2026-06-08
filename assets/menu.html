@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+  <body style="scale: 1; position: absolute;">
+  
+
+  <img id="menuBG" src="assets/images/menuBG.png" style="position: absolute; left: -8px; top: -8px; z-index: -1;" />
+
+  <div style="background-color: white; width: 210px; height: 200px; position: absolute; left: 355px; top: 60px;" ></div>
+
+  <img id="freeplay" src="assets/images/menuButtons/freeplay.png" style="position: absolute; scale: 0.25; left: -410px; top: -100px;" onclick="setInterval(() => { transition(4) },1000); selectionnedSound()" alt="freeplay" />
+  
+  <img id="setting" src="assets/images/menuButtons/setting.png" style="position: absolute; scale: 0.25; left: -420px; top: 0px;" onclick="setInterval(() => { transition('settings-menu',true); },1000); selectionnedSound()" alt="" />
+  
+  <img id="mods"src="assets/images/menuButtons/mods.png" style="position: absolute; scale: 0.24; left: -450px; top: 90px;" onclick="setInterval(() => { transition('setting-menu',true); },1000); selectionnedSound()" alt="" />
+
+  <img id="credit"src="assets/images/menuButtons/credit.png" style="position: absolute; scale: 0.15; left: -20px; top: 155px;" onclick="transition('setting-menu',true)" alt="" />
+
+  <script src="script/global/module/HPS engine.js"></script>
+  <script src="script/global/mainGlobal.js"></script>
+  <script src="script/menu/mainMenu.js"></script>
+
+</body>
+  <style>
+    body {
+      background-Color: black;
+    }
+  </style>
+<div>
+</div>
+
+</html>
