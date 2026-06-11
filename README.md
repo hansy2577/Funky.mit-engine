@@ -1,5 +1,6 @@
+<img width="500" alt="image" src="https://github.com/hansy2577/Funky.mit-engine/blob/main/F.M logo.png" />
 
-# Funky.mit-engine
+___
 
 <img width="1196" height="698" alt="image" src="https://github.com/hansy2577/Funky.mit-engine/blob/main/other/screenshots/1.4 gameplay.png" />
 
@@ -7,8 +8,6 @@
 _Pysch engine but re-code in HTML JS !!1!!1!11_
 <br><br><br>
 ____
-
-<img width="496" height="298" alt="image" src="https://github.com/hansy2577/Funky.mit-engine/blob/main/other/screenshots/menu.png" />
 
 **Funky.mit.engine** (or F.M engine) it a engine inspired by [Pysch engine](https://e) and [FNF-PlusEngine](https://github.com/Psych-Plus-Team/FNF-PlusEngine) but recode in **JavaScript** brute with no extensions !<br>. Before, it was my little favorite engine i made just for me in [scratch](https://scratch.mit.edu).
 
