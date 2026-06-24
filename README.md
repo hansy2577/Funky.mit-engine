@@ -1,4 +1,4 @@
-<img width="500" alt="image" src="https://github.com/hansy2577/Funky.mit-engine/blob/main/F.M logo.png" />
+<img width="500" alt="image" src="https://github.com/hansy2577/Funky.mit-engine/blob/main/arts/F.M logo.png" />
 
 ___
 
