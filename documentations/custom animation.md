@@ -3,14 +3,14 @@
 ```js
 makeLocalAnim("mySprite",game.modsFolder +"/images/myAnimation,10,0,0,1,"GAME",100,true,0,0, false, false)
 ```
-working like this :
+working like that :
 ```
 makeLocalAnim(id, src, length, x, y, scale, putIn, speed, isloop, xdelay, ydelay, flip, paddingLength, otherCss)
 ```
-## note :
+## others :
 
 * for `putIn` : <br>
-you can put your element **GAME**,**GUI** or element with a id like :
+you can put your element in: **GAME** , **GUI** or element with a id like :
 ```HTML
 <div id="hi"></div>
 ```
