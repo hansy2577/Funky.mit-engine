@@ -141,12 +141,16 @@ ScreenBeat(1.05,2)    // make game beat ,'disable in v2.7- for octimisation prob
 
 probably more later
 
+# current problem/defaut 
+
+* the engine can be slow for some phone
 
 # check list:
 
 - [ ] have a contributor for help
 - [x] add Dad 
 - [x] add healthBar
+- [ ] add mods tab
 - [ ] add all FNF source
 - [x] add options tab
 - [x] better default mods 
