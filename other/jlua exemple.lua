@@ -29,3 +29,11 @@ end,0)
 
 -- execute FMS function
 
+local angle = 0
+local myCube = FMS_makeElement("a cube","GAME",0,0,1,100,100)
+myCube.style.backgroundColor = "red";
+
+loop(function () 
+    myCube.style.transform = "rotate("+angle+"deg)"    
+end,10)
+
