@@ -101,7 +101,7 @@ events {
   onBFIconWin: false    // in WIP
 }
 ```
-**on use like this :**
+**can be use like this :**
 ```js
 // work like this
 
@@ -111,7 +111,7 @@ setInterval(() => {
   }
 },0)
 ```
-in lua to :
+and in lua to :
 ```lua
 loop(function ()
   if game.events.onBeatHit then
