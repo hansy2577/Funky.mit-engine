@@ -15,10 +15,14 @@ ____
 * simple script function ( inpired by **Pysch engine** and **Haxeflixel** ):
 
 ## make a simple cube :
-> subject to change  <br>
 
 ```js
 var myCube = FMS_makeElement("a cube","GAME",0,0,1,100,100)
+myCube.style.backgroundColor = "red";
+```
+in lua :
+```lua
+local myCube = FMS_makeElement("a cube","GAME",0,0,1,100,100)
 myCube.style.backgroundColor = "red";
 ```
 or
@@ -35,7 +39,6 @@ myCube.style.backgroundColor = "red";
 myCube.style.left = "0px";
 myCube.style.top = "0px";
 ```
-
 ## make a image :
 > subject to change
 
@@ -85,9 +88,7 @@ game.healthBars.data.dad  // get dad icon as HTML element
 
 ## game events
 > subject to change
-```js
-// some event
-
+```json
 events {
   onBeatHit: false,
   onStepHit: false,
@@ -99,7 +100,8 @@ events {
   onDadIconWin: false,    // in WIP
   onBFIconWin: false    // in WIP
 }
-
+```
+```js
 // work like this
 
 setInterval(() => {
@@ -107,6 +109,13 @@ setInterval(() => {
     // do something
   }
 },0)
+```
+```lua
+loop(function ()
+  if game.events.onBeatHit then
+    -- do somethings
+  end
+end,0)
 ```
 <br>
 
