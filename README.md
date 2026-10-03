@@ -46,15 +46,12 @@ myCube.style.left = "0px";
 myCube.style.top = "0px";
 ```
 ## make a image :
-> subject to change
-
 ```js
 var myImage = FMS_makeImage("a image","GAME","/images/myImage.png",0,0,1,1)
 ```
 
 ## game values :
-> subject to change
-> there not all value
+> really subject to change and there not all value
 
 ```js
 game.modsSelect        // ex: 'base-game' or 'myMods'
@@ -93,7 +90,7 @@ game.healthBars.data.dad  // get dad icon as HTML element
 ```
 
 ## game events
-> subject to change
+> idem to the top
 ```js
 events {
   onBeatHit: false,
@@ -163,15 +160,20 @@ probably more later
 
 * the engine can be slow for some phone
 
+* the souce code it pretty a mess
+> report me if your don't know how edite it or see a bugs
+
+
 # check list:
 
+- [ ] clear the source code/unsed assets
 - [ ] have a contributor for help
 - [x] add Dad 
 - [x] add healthBar
-- [ ] add mods tab
+- [X] add mods tab
 - [ ] add all FNF source
 - [x] add options tab
 - [x] better default mods 
 - [ ] cutscene system
-- [ ] funny song
+- [X] funny song
   
