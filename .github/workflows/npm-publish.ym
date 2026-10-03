@@ -1,6 +1,6 @@
 name: build in win linux apk
 
-on:
+oo:
   workflow_dispatch:
   push:
     branches:
