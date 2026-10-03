@@ -70,6 +70,8 @@ game.BPM.currentBPM    // get default BPM, ex: '120'
 
 game.isStarting   // for verifie if the game is started or not
 
+game.notesSpeed // notes speed
+
 // get stage as JSON
 
 game.stage.data    // get JSON stage
