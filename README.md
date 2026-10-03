@@ -9,7 +9,13 @@ _Pysch engine but re-code in HTML JS !!1!!1!11_
 <br><br><br>
 ____
 
-**Funky.mit.engine** (or F.M engine) it a engine inspired by [Pysch engine](https://e) and [FNF-PlusEngine](https://github.com/Psych-Plus-Team/FNF-PlusEngine) but recode in **JavaScript** brute with no extensions !<br>. Before, it was my little favorite engine i made just for me in [scratch](https://scratch.mit.edu).
+**Funky.mit.engine** (or F.M engine) it a fnf remade engine made for fun inspired ( for assets ) by [Pysch engine](https://github.com/ShadowMario/FNF-PsychEngine) and [FNF-PlusEngine](https://github.com/Psych-Plus-Team/FNF-PlusEngine) but recode in **JavaScript and HTML5**  with no external library/extension ( except for the console [eruda](https://cdn.jsdelivr.net/npm/eruda) )  !.<br><br>
+
+**Funkin.mit engine** was not made for only my personnal usage but for you to :],the cool think in this engine is didn't needed : compilation, learn other language, hard time for learn the source code, a PC ( can be exe in all little operating systems ) !.
+
+<br>Before today,this was my personal little favorite engine i made just for me in [scratch](https://scratch.mit.edu), if you want play the old version play [Here !](https://scratch.mit.edu/projects/1179357342/editor/) ( *this old version it pretty buggy and hard to modified xd* )
+
+
 
 # features :
 * simple script function ( inpired by **Pysch engine** and **Haxeflixel** ):
