@@ -111,7 +111,7 @@ function loadGameGui() {
         } else {
           if (iconSize >= 0.07) {
           //iconSize -= 0.0002;            
-            iconSize = iconSize / 1.005;
+            iconSize = iconSize / 1.008;
             
             game.healthBars.data.bf.style.scale = iconSize;
             game.healthBars.data.dad.style.scale = iconSize;
@@ -133,7 +133,7 @@ function loadGameGui() {
         } else {
           if (iconSize >= 0.07) {
           //iconSize -= 0.0002;            
-            iconSize = iconSize / 1.002;
+            iconSize = iconSize / 1.009;
             
             //game.healthBars.data.bf.style.scale = iconSize;
             //game.healthBars.data.dad.style.scale = iconSize;
@@ -145,7 +145,7 @@ function loadGameGui() {
         }
         
         if (goldenApple.value2 >= 1.1) {
-          goldenApple.value2 = goldenApple.value2 / 1.03;
+          goldenApple.value2 = goldenApple.value2 / 1.07;
           
           game.healthBars.data.dad.style.transform = "scaleY("+goldenApple.value1+")";
           game.healthBars.data.dad.style.transform += "scaleX("+goldenApple.value2+")";
@@ -183,7 +183,7 @@ function loadGameGui() {
         botplayOpacity_Out()
       }
     }
-  }, 3)
+  }, fpsToMS(50))
 }
 
 function iconBeatHit() {
@@ -194,11 +194,11 @@ function iconBeatHit() {
     clearInterval(looop);
     
     if (game.health >= game.healthBars.icon.minPos) {
-      game.health += value;
+      game.health -= 1;
     }
 
     if (game.health <= game.healthBars.icon.maxPos) {
-      game.health -= value;
+      game.health += 1;
     }
   },50)
 }

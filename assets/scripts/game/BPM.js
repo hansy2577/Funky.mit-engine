@@ -1,8 +1,8 @@
-let BPMcount = 0;
+let bPMcount = 0;
 let bpmL = null;
 
 function startBPM(bpm) {
-  if (!game.BPM.activate && BPMcount <= 1) {
+  if (!game.BPM.activate && bPMcount <= 1) {
     game.BPM.activate = true;
    
 
@@ -11,10 +11,11 @@ function startBPM(bpm) {
     bpmL = setInterval(() => {
       game.events.onBeatHit = true; 
       if (!game.song.onEnded) {
-        characterBeatHit()
-        camBeatHit()
-        iconBeatHit()
-        eventsBeatHit()
+        characterBeatHit();
+        camBeatHit();
+        iconBeatHit();
+        
+        coreEvents_BeatHit();
       }
       
       time2++;
@@ -42,5 +43,5 @@ function startBPM(bpm) {
 function stopBPM() {
   game.BPM.activate = false;
   clearInterval(bpmL)
-  BPMcount = 0;
+  bPMcount = 0;
 }

@@ -3,8 +3,6 @@ if (sessionStorage.getItem("game") == undefined) {
   PreError("fail to get data from 'menu.html', try again", false, true)
 }
 
-eruda.init();
-
 global.tab = "game";
 
 let game = {
@@ -13,6 +11,10 @@ let game = {
   
   scores: 0,
   missed: 0,
+  
+  gameMods: {
+    spaceForLive: false
+  },
   
   characters: {
     gfIdAnim: {
@@ -45,7 +47,7 @@ let game = {
     bumpIcon: true,
     
     icon: {
-      minPos: -85,
+      minPos: -95,
       maxPos: 85
     },
     
@@ -101,6 +103,8 @@ let game = {
   
   notesDefaultPosition: 0,
   
+  notesSpeed: null,
+  
   notesSkinData: null,
   notesSkinSelecte: null,
   
@@ -114,9 +118,9 @@ let game = {
   mainData: null,
   
   settings: {
-    devMods: false,
+    devMods: true,
     
-    soundOnPressNote: true,
+    soundOnPressNote: false,
     bumpingScreen: false,
     
     noteSplash: true,
@@ -132,6 +136,10 @@ let game = {
   
   pauseGameState: false,
   
+  charaIconFolder: null,
+  musicFolder: null,
+  soundsFolder: null,
+  imagesFolder: null,
   modsSelect: "fail",
   songFolder: null,
   songSelect: null,
@@ -175,6 +183,18 @@ let game = {
     onBFIconWin: false
   }
 };
+
+if (game.settings.devMods) {
+  eruda.init();
+}
+
+//load game mods
+
+if (FMD_getStorage("FM : gameMods : spaceForLive") == "true") {
+  game.gameMods.spaceForLive = true;
+  FMS_playScript("spaceForLive",["scripts/game/gameModifiers/pressSpace.js"],false);
+}
+
 
 // make it if it not exist lol
 
@@ -233,11 +253,15 @@ function getMainJson(yourmods) {
         game.song.name = o[1];  // just like up
         game.songDifficulties = o[2];
         game.song.difficulties = o[2]; // just like up
-        game.songFolder = "mods/"+game.modsSelect+"/songs/"+o[1]+"/"+o[2]
-        game.modsFolder = "mods/"+game.modsSelect
+        game.songFolder = "mods/"+game.modsSelect+"/"+FMS_folder.songs+"/"+o[1]+"/"+o[2]
+        game.modsFolder = "mods/"+game.modsSelect;
+        game.imagesFolder = "mods/"+game.modsSelect+"/"+FMS_folder.imagesName;
+        game.musicFolder = "mods/"+game.modsSelect+"/"+FMS_folder.music;
+        game.charaIconFolder = game.imagesFolder+"/"+FMS_folder.imagesFolders.charactersIcon;
+        game.soundsFolder = "mods/"+game.modsSelect+"/"+FMS_folder.sounds;
         
-        getMetadataJson()
-        getChartJson()
+        getMetadataJson();
+        getChartJson();
       }
     }
   }
@@ -262,6 +286,8 @@ function getMetadataJson() {
         PreError("getMetadataJson | fail to get the file, reson: "+allText, false, true)
       } else {
         game.song.metadata = JSON.parse(allText)
+        
+        game.notesSpeed = game.song.metadata.chart.speed;
         
         game.BPM.currentBPM = game.song.metadata.chart.BPM;
         game.canStart = true;
@@ -301,7 +327,7 @@ function getStageData(link) {
   // get the json file
   var rawFile = new XMLHttpRequest();
   var reload = 0;
-  rawFile.open("get", game.modsFolder+"/stages/"+link+".json", true);
+  rawFile.open("get", game.modsFolder+"/"+FMS_folder.stages+"/"+link+".json", true);
   rawFile.onreadystatechange = function() {
     reload++;
     if (rawFile.readyState === 4) {
@@ -325,7 +351,7 @@ function getNotesData(link) {
   // get the json file
   var rawFile = new XMLHttpRequest();
   var reload = 0;
-  rawFile.open("get", game.modsFolder+"/images/notes-skins/"+link+"/main.json", true);
+  rawFile.open("get", game.modsFolder+"/"+FMS_folder.imagesName+"/"+FMS_folder.imagesFolders.noteSkin+"/"+link+"/main.json", true);
   rawFile.onreadystatechange = function() {
     reload++;
     if (rawFile.readyState === 4) {
@@ -374,7 +400,8 @@ function loadStage(data) {
     game.stage.BG.style.zIndex = -10;
   }
   }
-  getCharacters()
+  getCharacters();
+  loadPauseMenu();
 }
 
 var antiLoop = 0;
@@ -386,7 +413,7 @@ function onPreLoad() { if (antiLoop == 0 ) {
   document.body.appendChild(tscript);
 
   const tscript2 = document.createElement("script");
-  tscript2.src = game.modsFolder + "/scripts/onGame.js";
+  tscript2.src = game.modsFolder + "/"+FMS_folder.scripts+"/onGame.js";
   document.body.appendChild(tscript2);
 
   // load audio
@@ -435,9 +462,7 @@ function onPreLoad() { if (antiLoop == 0 ) {
   
   game.BPM.inMilliseconds = bpmTomillisecond(game.BPM.currentBPM)
   
-  loadPauseMenu();
-  
-  gameEvents()
+  //gameEvents()
   
   antiLoop++;
 }}

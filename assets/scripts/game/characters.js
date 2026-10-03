@@ -411,23 +411,22 @@ var animList_DAD = Object.keys(game.data.dad.animations) // Json key to array
   
   
   if (game.events.onStepHit == true) {
-    gfIdle = 1; // shhh...
+    //gfIdle = 1; // shhh...
   }
   
     //console.log(gfIdle)
-
+      gfIdle++;
       if (gfIdle == 0 && IsStopped_LocalAnim("gf NR") == "true") {
       document.getElementById("gf NR folder").style.scale = 0;
       document.getElementById("gf NL folder").style.scale = 1;
       
       playLocalAnim("gf NL");
-      gfIdle = 1;
-      } else if (gfIdle == 1 && IsStopped_LocalAnim("gf NL") == "true") {
+      } else if (gfIdle == 2 && IsStopped_LocalAnim("gf NL") == "true") {
       document.getElementById("gf NR folder").style.scale = 1;
       document.getElementById("gf NL folder").style.scale = 0;
       
         playLocalAnim("gf NR");
-        gfIdle = 0;
+        gfIdle = -2;
       }
     
   

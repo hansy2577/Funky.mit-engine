@@ -105,24 +105,24 @@ function makeNote(x,as) {
       }
     }
   }
+}
 
   // arrows key events
-  
   document.addEventListener('keydown', function(event) {
     if (event.key == game.settings.key[0] || event.key == "ArrowLeft") {
       game.notes[0].onpointerdown()
     }
-
+    
     if (event.key == game.settings.key[1] || event.key == "ArrowUp") {
       game.notes[1].onpointerdown()
     }
-
+    
     if (event.key == game.settings.key[2] || event.key == "ArrowDown") {
       game.notes[2].onpointerdown()
     }
     
     if (event.key == game.settings.key[3] || event.key == "ArrowRight") {
-      game.notes[3].onpointerdown()
+      game.notes[3].onpointerdown();
     }
   });
   
@@ -143,10 +143,6 @@ function makeNote(x,as) {
       game.notes[3].onpointerout()
     }
   });
-}
-
-
-
 
 // put function in
 
@@ -210,6 +206,9 @@ function generateNotes(type,isLongNote,customNotesSkin = false,spawnTime = game.
   var notesTimeGenerated = spawnTime;
   //alert(game.song.inst.currentTime+" : "+spawnTime)
   
+  if (game.settings.soundOnPressNote == true) {
+    var hitsoundData = new Audio("assets/sounds/hitsound.ogg");
+  }
   
     if (type2 <= 3) {
       if (isLongNote !== true) {
@@ -278,6 +277,7 @@ function generateNotes(type,isLongNote,customNotesSkin = false,spawnTime = game.
       var play = true;
       var pressed = false;
       var notesClickDetection = -430;
+      var slowMode = false;
       
       if (game.song.inst.currentTime >= notesTimeGenerated + 10) {
         //tempoNote.remove()
@@ -292,20 +292,45 @@ function generateNotes(type,isLongNote,customNotesSkin = false,spawnTime = game.
         }
         
         if /* move the notes */ (game.canMoveNote == true && game.pauseGameState == false) {
-          // *old system not sound time sycroniser | Y -= game.song.metadata.chart.speed * 40;
+          // *old system not sound time sycroniser | Y -= game.notesSpeed * 40;
           
           
-        Y = "-"+((((game.song.inst.currentTime * 1000) - 
-        (notesTimeGenerated)) * 
-        (game.song.metadata.chart.speed * 2.3)) + 1300);    
-        
+          if (!game.settings.botplay) {
+            // player
+            
+            if ((game.song.inst.currentTime * 1000) <= (notesTimeGenerated) && !slowMode) {
+              // default move
+              
+              Y = "-"+((((game.song.inst.currentTime * 1000) - 
+              (notesTimeGenerated)) * 
+              (game.notesSpeed * 2.3)) + 1300);
+            } else {
+              if (!slowMode) {
+                slowMode = true;
+              }
+            }
+            
+            if (slowMode) {
+              // slow downs when approsing the strumb notes
+              
+              Y = "-"+((((game.song.inst.currentTime * 1000) - 
+              (notesTimeGenerated)) * 
+              (game.notesSpeed * 2.1)) + 1300);
+            }
+            
+          } else {
+            // botplay
+            Y = "-"+((((game.song.inst.currentTime * 1000) - 
+            (notesTimeGenerated)) * 
+            (game.notesSpeed * 2.3)) + 1950);    
+          }
         }
         
           if (game.settings.botplay !== true) {
             // manual mods
             if (isLongNote !== true) {
               // detecte 
-              if (Y <= (-900 + notesClickDetection) && pressed !== true) {
+              if (Y <= (-800 + notesClickDetection) && pressed !== true) {
                 if (type == 0) {
                   if (game.keyPress.L == true) {
                     pressed = true;
@@ -341,16 +366,20 @@ function generateNotes(type,isLongNote,customNotesSkin = false,spawnTime = game.
                 }
               }
               
-              // when before/after note 
-              if (Y <= (-900 + notesClickDetection) && pressed == true) {
+              // notes clicked
+              if (Y <= (-800 + notesClickDetection) && pressed == true) {
                 
                 tempoNote.remove()
                 
+                if (game.settings.soundOnPressNote == true) {
+                  hitsoundData.play()
+                }
+              
                 game.events.onNotesHit = true;
                 playAnim(type2);
                 
                 FMS_health(-6)
-                goodNoteHit()
+                coreEvents_onNotesHit(false);
                 
                 game.notesPress = null;
                 if (game.settings.noteSplash) {
@@ -359,7 +388,7 @@ function generateNotes(type,isLongNote,customNotesSkin = false,spawnTime = game.
                 clearInterval(loop);
               }
             } else {
-              if (Y <= (-900 + notesClickDetection) && pressed !== true) {
+              if (Y <= (-1000 + notesClickDetection) && pressed !== true) {
                 if (type == 0) {
                   if (game.canLongNotes.L == true) {
                     pressed = true;
@@ -389,32 +418,48 @@ function generateNotes(type,isLongNote,customNotesSkin = false,spawnTime = game.
                   }
                 }
               }
-
               
-              if (Y <= (-900 + notesClickDetection) && pressed == true) {
+              // long notes played
+              if (Y <= (-1000 + notesClickDetection) && pressed == true) {
                 tempoNote.remove()
                 FMS_health(-0.5)
                 playAnim(type2)
+                coreEvents_onNotesHit(true);
                 
                 clearInterval(loop);
               }
             }
     
             if (Y <= (-1900 + notesClickDetection)) {
-              FMS_health(11)
-              game.missed += 1;
-              tempoNote.remove();
-              clearInterval(loop);
-              bf_miss()
+              // when missed
+              
+              if (!isLongNote) {
+                // default notes
+                FMS_health(4);
+                game.missed += 1;
+                tempoNote.remove();
+                clearInterval(loop);
+                bf_miss();
+                
+                coreEvents_onMiss(false)
+              } else {
+                // long notes
+                FMS_health(2);
+                tempoNote.remove();
+                clearInterval(loop);
+                bf_miss();
+                
+                coreEvents_onMiss(true);
+              }
             }
           } else {
             // botplay mods
             
-            if (Y <= (-1100 + notesClickDetection) && play == true) {
+            if (Y <= (-1050 + notesClickDetection) && play == true) {
               tempoNote.remove()
               
               if (game.settings.soundOnPressNote == true && isLongNote !== true) {
-                new Audio("assets/sound/hitsound.ogg").play()
+                hitsoundData.play()
               }
               
               if (isLongNote !== true) {
@@ -430,7 +475,8 @@ function generateNotes(type,isLongNote,customNotesSkin = false,spawnTime = game.
       
               game.notesPress = null;
               if (isLongNote !== true) {
-                goodNoteHit()
+                coreEvents_onNotesHit(false);
+                
                 FMS_health(-5)
                 if (game.settings.noteSplash == true) {
                   generateNotesEffect(type2)
@@ -438,14 +484,22 @@ function generateNotes(type,isLongNote,customNotesSkin = false,spawnTime = game.
               }
             }
     
-            if (Y <= (-1100 + notesClickDetection) && game.settings.botplay) {
+            if (Y <= (-1050 + notesClickDetection) && game.settings.botplay) {
               if (tempN <= 0) {
-                FMS_health(-0.5)
+                if (!isLongNote) {
+                  // default notes
+                  FMS_health(-6)
+                
+                  coreEvents_onNotesHit(false)
+                } else {
+                  // long notes
+                  FMS_health(-0.5);
+                }
                 
                 playAnim(type2);
                 clearInterval(loop);
                 tempoNote.remove();
-                game.notes[type].onpointerout()
+                game.notes[type].onpointerout();
               } else {
                 tempN--;
               }
@@ -534,17 +588,17 @@ function makeLongNotes(type,L,spawnTime) {
   if (L >= 1) {
   var mb = setInterval(() => {
     
-    if (value >= L * 0.8) {
+    if (value >= L * 0.65) {
       clearInterval(mb);
     }
     
-    value += 100;  // speed
+    value += 50;  // speed
 
     if (value >= step) {
-      step += 100;
-      generateNotes(type,true,false,spawnTime + value * 0.49);
+      step += 50;
+      generateNotes(type,true,false,spawnTime + value * 0.50);
     }
-  }, 0)
+  }, 3)
   }
 }
 
@@ -565,7 +619,7 @@ function makeDadLongNotes(type,L) {
       step += 150;
       generateDadNotes(type,true);
     }
-  }, 0)
+  }, 3)
   }
 }
 

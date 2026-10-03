@@ -50,12 +50,12 @@ function playChart_BF(type,chart = game.song.chart) {
     }
     
     timer = game.song.inst.currentTime * 1000;
-    if (game.settings.botplay == true) {
-      timer = timer + 750;
+    if (game.settings.botplay) {
+      timer = timer + (1600 - (game.notesSpeed - 1) * 100);
     } else {
       // this only code is remake by a github because -
       // i never successful and perfectly make notes generation statistics :‹ ( just look the old version bro )
-      timer = timer + (630 - (game.song.metadata.chart.speed - 1) * 100);
+      timer = timer + (1600 - (game.notesSpeed - 1) * 100);
     }
     
     if (A >= data.length) {
@@ -128,6 +128,22 @@ function playChart_DAD(type,chart = game.song.chart) {
 
 
     if (timer >= data.length) {
+      if (game.cam.asBf !== data[A].mustHitSection) {
+        coreEvents_stepHit()
+        
+        stopBPM();
+        var dat = Object.keys(data[A]) // Json key to array 
+          
+        var wait = setInterval(() => {
+          if (dat.includes('BPM')) {
+            startBPM(data[A].bpm);
+            game.song.metadata.chart.BMP = data[A].bpm;
+          } else {
+            startBPM(game.song.metadata.chart.BPM);
+          }
+          clearInterval(wait);
+        }, 20)
+      }
       game.cam.asBf = data[A].mustHitSection;
       
       if (data[A].sectionNotes.length == 0) {
@@ -148,20 +164,7 @@ function playChart_DAD(type,chart = game.song.chart) {
           game.song.inst.currentTime * 1000;
           //game.song.voice.currentTime = game.song.inst.currentTime - 0.0001
           //console.clear()
-          var dat = Object.keys(data[A]) // Json key to array 
-          
-	
-          stopBPM();
 
-          var wait = setInterval(() => {
-             if (dat.includes('BPM')) {
-               startBPM(data[A].bpm);
-             } else {
-               startBPM(game.song.metadata.chart.BPM);
-             }
-             clearInterval(wait);
-          },50)
-          
           if (beat == 1) {
             beat = 0;
           } else {
