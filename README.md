@@ -61,6 +61,11 @@ game.songSelect        // the song name
 game.songDifficulties      // song difficultie, ex: 'hard'
 game.songFolder     // if you want get a audio, ex: '/myText.txt'
 
+game.charaIconFolder  // path characters folder
+game.musicFolder      // music folder path
+game.soundsFolder      // idem but for the sounds
+game.imagesFolder      // idem but for the images
+
 game.BPM.currentBPM    // get default BPM, ex: '120'
 
 game.isStarting   // for verifie if the game is started or not
@@ -92,35 +97,37 @@ game.healthBars.data.dad  // get dad icon as HTML element
 ## game events
 > idem to the top
 ```js
-events {
-  onBeatHit: false,
-  onStepHit: false,
-  onNotesHit: false,
-  onGoodNotesHit: false,    // in WIP
-  onMiss: false,
-  onRandomKeyPress: false,    // in WIP
-  onNotesOpponentHit: false,
-  onDadIconWin: false,    // in WIP
-  onBFIconWin: false    // in WIP
+function onBeatHit() {
+// put something here !
+}
+
+function onStepHit() {
+// put something here !
+}
+
+function onNotesHit(longNotes) {
+// put something here !
+}
+
+function onMiss(){
+// put something here !
+}
+
+function onNotesOpponentHit(){
+// put something here !
 }
 ```
-**can be use like this :**
-```js
-// work like this
-
-setInterval(() => {
-  if (game.events.onBeatHit == true) {
-    // do something
-  }
-},0)
-```
-and in lua to :
+and in lua too :
 ```lua
-loop(function ()
-  if game.events.onBeatHit then
-    -- do somethings
-  end
-end,0)
+function onBeatHit() 
+-- put something here !
+end
+
+function onStepHit() 
+-- put something here !
+end
+
+...
 ```
 <br>
 <br>
