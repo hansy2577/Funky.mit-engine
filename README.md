@@ -171,7 +171,7 @@ ScreenBeat(1.05,2)    // make game beat ,'disable in v2.7- for octimisation prob
 * simple stages animation
 * new better songs folder system
 * new mods meta system
-*and more*
+<br>*and more*
 <br>
 
 
