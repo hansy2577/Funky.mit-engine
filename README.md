@@ -163,7 +163,18 @@ ScreenBeat(1.05,2)    // make game beat ,'disable in v2.7- for octimisation prob
 
 <br><br>
 
-probably more later
+**more features !!!**:
+* open source
+* simple to learn
+* lua script !
+* used pysch engine chart !
+* simple stages animation
+* new better songs folder system
+* new mods meta system
+*and more*
+<br>
+
+
 
 # current problem/defaut 
 
