@@ -1,0 +1,35 @@
+{
+  "mods alt name":"Friday night funkin'",
+  "version":"9.9.9",
+  "description":"let freaky on the Friday night yeah !",
+  
+  
+  "assets":{
+    "note":"images/notes/Arrow.svg",
+    "custom Pause title text":"Pause !"
+  },
+      
+  "song":{
+    "list":[
+      "week1-bipBoop",
+      "week1-fresh",
+      "week1-dad-battle",
+      
+      "week2-spookeez",
+      "week2-south",
+      "week2-monster"
+    ],
+    
+    "data": {
+      "week1-bipBoop":{ "name":"bipBoop", "color":"purple", "icon": "bf", "difficulties": ["hard","erect"], "week name": "week 1" },
+      "week1-fresh":{ "name":"fresh", "color":"purple", "icon": "bf", "difficulties": ["hard","erect"], "week name": "week 1" },
+      "week1-dad-battle":{ "name":"dad-battle", "color":"purple", "icon": "bf", "difficulties": ["hard","erect"], "week name": "week 1" },
+      
+      "week2-spookeez":{ "name":"spookeez", "color":"#FFB632", "icon": "bf", "difficulties": ["normal","erect"], "week name": "week 1" },
+      "week2-south":{ "name":"south", "color":"#FFB632", "icon": "bf", "difficulties": ["normal","erect"], "week name": "week 1" },
+      "week2-monster":{ "name":"monster", "color":"#FFB632", "icon": "bf", "difficulties": ["normal"], "week name": "week 1" }
+     }
+  },
+  
+  "characters":["BF"]
+}
