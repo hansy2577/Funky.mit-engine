@@ -1,0 +1,35 @@
+name: build in inux
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build-linux:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Package Linux application
+        run: npm run build:linux
+
+      - name: Upload Linux application
+        uses: actions/upload-artifact@v4
+        with:
+          name: Funkin.mit-engine-linux-x64
+          path: dist/
+          if-no-files-found: error
+          compression-level: 6
