@@ -21,7 +21,7 @@ ____
 
 **Funkin.mit engine** was not made for only my personnal usage but for you to :],the cool think in this engine is didn't needed : compilation, learn other language, hard time for learn the source code, a PC ( can be exe in all little operating systems ) !.
 
-Before today,this was my personal little favorite engine i made just for me in [scratch](https://scratch.mit.edu), if you want play the old version play [Here !](https://scratch.mit.edu/projects/1179357342/editor/) ( *this old version it pretty buggy and hard to modified xd* )
+Before today,this was my personal little favorite engine i made just for me in [scratch](https://scratch.mit.edu), if you want play the old version play [Here !](https://scratch.mit.edu/projects/1179357342) ( *this old version it pretty buggy and hard to modified xd* )
 
 
 
