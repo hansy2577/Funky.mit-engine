@@ -29,11 +29,22 @@
       "buildResources": "assets",
       "output": "output-exe"
     },
+    
     "files": [
       "src/**/*",
       "node_modules/**/*",
       "icon.ico"
     ],
+
+    
+    "linux": {
+      "target": [
+        "AppImage",
+        "deb"
+      ],
+      "icon": "icons"
+    },
+    
     "win": {
       "target": [
         {
@@ -47,6 +58,7 @@
       ],
       "icon": "icon.ico"
     },
+    
     "nsis": {
       "oneClick": false,
       "allowToChangeInstallationDirectory": true,
