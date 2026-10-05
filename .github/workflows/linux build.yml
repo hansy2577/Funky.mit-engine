@@ -1,4 +1,4 @@
-name: build in inux
+name: build in linux
 
 on:
   workflow_dispatch:
