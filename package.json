@@ -10,8 +10,9 @@
 
   "scripts": {
     "start": "electron .",
+    "dist": "electron-builder"
     "dev": "electron .",
-    "build": "electron-packager . Funky_mit_engine --platform=win32 --arch=x64 --out=dist --overwrite"
+    "build": "electron-packager . Funky_mit_engine --platform=win32,linux --arch=x64 --out=dist --overwrite"
   },
 
   "devDependencies": {
