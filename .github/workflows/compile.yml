@@ -57,6 +57,6 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: Funkin.mit-engine-linux-x64
-          path: dist/Funkin.mit-engine-x64/
+          path: dist/
           if-no-files-found: error
           compression-level: 6
