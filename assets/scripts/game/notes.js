@@ -303,7 +303,7 @@ function generateNotes(type,isLongNote,customNotesSkin = false,spawnTime = game.
               
               Y = "-"+((((game.song.inst.currentTime * 1000) - 
               (notesTimeGenerated)) * 
-              (game.notesSpeed * 2.3)) + 1300);
+              (game.notesSpeed * 2.3)) + 1350);
             } else {
               if (!slowMode) {
                 slowMode = true;
@@ -315,7 +315,7 @@ function generateNotes(type,isLongNote,customNotesSkin = false,spawnTime = game.
               
               Y = "-"+((((game.song.inst.currentTime * 1000) - 
               (notesTimeGenerated)) * 
-              (game.notesSpeed * 2.1)) + 1300);
+              (game.notesSpeed * 2.1)) + 1350);
             }
             
           } else {
