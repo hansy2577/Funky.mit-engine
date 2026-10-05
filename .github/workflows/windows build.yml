@@ -1,4 +1,4 @@
-name: build in win linux apk
+name: build in windows
 
 on:
   workflow_dispatch:
