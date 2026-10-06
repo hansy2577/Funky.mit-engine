@@ -1,7 +1,6 @@
 <img width="500" alt="image" src="https://github.com/hansy2577/Funky.mit-engine/blob/main/arts/F.M logo.png" />
 
-___https://us04web.zoom.us/wc/79851528574/join?ref_from=launch&fromPWA=1&wpk=wcpk%7B0%7D%26%26%26%26wcpk9640fb54ab43ade910ab2afb2b2ed06d&_x_zm_rtaid=hDmjNoyuRoyqWal1D9_P9w.1791276829159.7cca065015a97979518a908627479030&_x_zm_rhtaid=390
-
+___
 <img width="1196" height="698" alt="image" src="https://github.com/hansy2577/Funky.mit-engine/blob/main/other/screenshots/1.4 gameplay.png" />
 
 
