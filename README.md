@@ -168,7 +168,7 @@ ScreenBeat(1.05,2)    // make game beat ,'disable in v2.7- for octimisation prob
 * simple custom note
 <img width="775" height="122" alt="image" src="https://github.com/user-attachments/assets/3a3019bc-4be2-444a-9d6e-808af2496b57" />
 
-more in the wiki here: https://github.com/hansy2577/Funky.mit-engine/wiki
+more in the wiki [here](https://hansy2577.github.io/Funkin.mit-wikigine/)
 
 <br><br>
 
