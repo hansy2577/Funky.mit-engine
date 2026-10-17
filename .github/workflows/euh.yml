@@ -15,9 +15,9 @@ jobs:
       - name: Inline HTML, CSS, and JS
         uses: ntsk/html-inline-actions@v1.2.0
         with:
-          html_file: 'index.html'         # Your input file
-          output_file: 'dist/index.html'  # Where the single file will be saved
-
+          path: 'index.html'
+          prefix: 'inlined-'
+    
       - name: Upload Single File Artifact
         uses: actions/upload-artifact@v4
         with:
