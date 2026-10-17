@@ -25,7 +25,7 @@ jobs:
         # Remplacez "index.html" par le nom du fichier HTML principal de votre moteur
         run: |
           mkdir -p build
-          posthtml index.html -o build/index.html -u posthtml-inline-assets
+          posthtml mobile.html -o build/mobile.html -u posthtml-inline-assets
 
       - name: Upload Single File Game Artifact
         uses: actions/upload-artifact@v4
