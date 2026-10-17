@@ -15,7 +15,7 @@ jobs:
       - name: Inline HTML, CSS, and JS
         uses: ntsk/html-inline-actions@v1.2.0
         with:
-          path: 'index.html'
+          path: dist/
           prefix: 'inlined-'
     
       - name: Upload Single File Artifact
