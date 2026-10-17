@@ -13,7 +13,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Inline HTML, CSS, and JS
-        uses: subhamx/html-inline-actions@v1.2.0
+        uses: ntsk/html-inline-actions@v1.2.0
         with:
           html_file: 'index.html'         # Your input file
           output_file: 'dist/index.html'  # Where the single file will be saved
