@@ -1,25 +1,34 @@
-name: Bundle to Single HTML File
+name: Compile Funkin.mit Engine to 1 File
 
 on:
   workflow_dispatch:
 
 permissions:
   contents: read
+  
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
+      - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Inline HTML, CSS, and JS
-        uses: ntsk/html-inline-actions@v1.2.0
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
-          path: /dist/index.html
-          prefix: 'inlined-'
-    
-      - name: Upload Single File Artifact
+          node-version: 20
+
+      - name: Install Inliner Tool
+        run: npm install -g posthtml-cli posthtml-inline-assets
+
+      - name: Compile HTML JS CSS into Single File
+        # Remplacez "index.html" par le nom du fichier HTML principal de votre moteur
+        run: |
+          mkdir -p build
+          posthtml index.html -o build/index.html -u posthtml-inline-assets
+
+      - name: Upload Single File Game Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: single-html-page
-          path: /dist/index.html
+          name: funkin-mit-single-file
+          path: build/index.html
