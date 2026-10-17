@@ -1,9 +1,10 @@
 name: Bundle to Single HTML File
 
 on:
-  push:
-    branches: [ main ]
+  workflow_dispatch:
 
+permissions:
+  contents: read
 jobs:
   build:
     runs-on: ubuntu-latest
