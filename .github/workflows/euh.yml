@@ -1,0 +1,24 @@
+name: Bundle to Single HTML File
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Inline HTML, CSS, and JS
+        uses: subhamx/html-inline-actions@v1.0.0
+        with:
+          html_file: 'index.html'         # Your input file
+          output_file: 'dist/index.html'  # Where the single file will be saved
+
+      - name: Upload Single File Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: single-html-page
+          path: dist/index.html
