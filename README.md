@@ -26,9 +26,11 @@ Before today,this was my personal little favorite engine i made just for me in [
 
 > the Freeplay
 <img width="1196" height="698" alt="image" src="https://github.com/hansy2577/Funky.mit-engine/blob/main/arts/freeplay-v5.7.png" />
+<br>
 
 > new press to play from the v5.7
 <img width="1196" height="698" alt="image" src="https://github.com/hansy2577/Funky.mit-engine/blob/main/arts/Screenshot%202026-10-05%2018.13.44.png" />
+<br>
 
 > pico but skid and pump
 <img width="1196" height="698" alt="image" src="https://github.com/hansy2577/Funky.mit-engine/blob/main/arts/picoSong-v5.7.png" />
