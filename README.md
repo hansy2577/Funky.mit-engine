@@ -22,6 +22,16 @@ ____
 
 Before today,this was my personal little favorite engine i made just for me in [scratch](https://scratch.mit.edu), if you want play the old version play [Here !](https://scratch.mit.edu/projects/1179357342) ( *this old version it pretty buggy and hard to modified xd* )
 
+# game images :
+
+> the Freeplay
+<img width="1196" height="698" alt="image" src="https://github.com/hansy2577/Funky.mit-engine/blob/main/arts/freeplay-v5.7.png" />
+
+> new press to play from the v5.7
+<img width="1196" height="698" alt="image" src="https://github.com/hansy2577/Funky.mit-engine/blob/main/arts/Screenshot%202026-10-05%2018.13.44.png" />
+
+> pico but skid and pump
+<img width="1196" height="698" alt="image" src="https://github.com/hansy2577/Funky.mit-engine/blob/main/arts/picoSong-v5.7.png" />
 
 
 # features :
