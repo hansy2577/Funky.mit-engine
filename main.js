@@ -5,9 +5,9 @@ function createWindow() {
   const win = new BrowserWindow({
     width: 1200,
     height: 700,
-    autoHideMenuBar: true,
+    autoHideMenuBar: false,
     icon: path.join(__dirname, 'icon.ico'),
-    webPreferences: { nodeIntegration: true }
+    //webPreferences: { nodeIntegration: true }
   });
 
   win.loadFile(path.join(__dirname, 'index.html'));
