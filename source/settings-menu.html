@@ -8,9 +8,9 @@
  <link rel="stylesheet" href="style.css">
 </head>
 
-<body style="scale: 1; position: absolute;">
+<body id="body" style="scale: 1; position: absolute;">
 	
-	<a id="backButton" onclick="transition(2); backSound();" style="scale: 0.8; z-index: 2; font-size: 20px; color: white; position: absolute; top: -10px; left: -8px; width: 15px; background-Color: #5050507D; border-radius: 5px; padding: 5px; opacity: 0.5;" ><</a>
+	<a aria-label="Plus d'informations sur les noms d'utilisateur" id="backButton" onclick="transition(2); backSound();" style="scale: 0.7; z-index: 2; font-size: 20px; color: white; position: absolute; top: -10px; left: -8px; width: 15px; background-Color: #5050507D; border-radius: 5px; padding: 5px; opacity: 0.5;" ><</a>
 
  <img id="settingsBG" src="assets/images/settingBG.png" style="position: absolute; left: -8px; top: -8px; z-index: -1; opacity: 0.5;" />
  <div style="background-Color: #505050; width: 600px; height: 500px; position: absolute; left: -10px; top: -10px; z-index: -2; "></div>
@@ -43,9 +43,12 @@ style="z-index: 2; font-size: 20px; color: white; position: absolute; top: 255px
 
  </div>
 
- <script src="script/global/module/HPS engine.js"></script>
- <script src="script/global/mainGlobal.js"></script>
- <script src="script/menu/settings/mainSettings.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/eruda"></script>
+
+  <script src="extensions/storage/storage.js"></script>
+ <script src="extensions/FMS-engine/FMS engine.js"></script>
+ <script src="scripts/global/mainGlobal.js"></script>
+ <script src="scripts/menu/settings/mainSettings.js"></script>
 </body>
 <style>
  body {
