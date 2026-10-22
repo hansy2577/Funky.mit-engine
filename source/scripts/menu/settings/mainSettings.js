@@ -1,3 +1,5 @@
+eruda.init()
+
 let settings = {
   modsList: null,
   songList: null,
@@ -9,39 +11,37 @@ let settings = {
   settingsTab: ["gameplay","visual","graphics","mobile"],
   settingsList: [
     ["disable move cam?"," for better performances | if you want the cam don't move",0,
-    "gameplay","boolean",["boolean"]],
+    "gameplay","boolean",["boolean"],false],
     
     // ---
     
     ["setting key","for pc player only",0,
-    "graphics",null],
+    "graphics",null,"dfjk"],
     
     // ---
     
     ["screen bounce on beatHit","if the screen zoom bounce when a beat",0,
-    "visual","boolean",["boolean"]],
-    
-    ["text bounce on beatHit", "if the text bounce when a beat", 40,
-    "visual", "boolean", ["boolean"]],
+    "visual","boolean",["boolean"],true],
     
     ["custom icon bumping","type of icon effect",80,
-    "visual","options",["default","golden apple"]],
+    "visual","options",["default","golden apple"],"default"],
     
     ["show timer?","show the timer ( and the bar ) in game",120,
-    "visual","boolean",["boolean"]],
+    "visual","boolean",["boolean"],true],
     
-    ["show healthBar?","show the healthBar and the icon",160,
-    "visual","boolean",["boolean"]],
+    ["notes fps","notes fps",160,
+    "visual",null,[""],60],
     
     ["show ranking?","can lag in some devise | show you rank (sick , good , bad , shit)",200,
-    "visual","boolean",["boolean"]],
+    "visual","boolean",["boolean"],true],
 
     // ---
     
     ["mobile key","for pc player only",0,
-    "mobile","boolean"]
+    "mobile","boolean",false,false]
   ]
 }
+
 
 if (settings.modsChoise == null) {
   settings.modsChoise = 1
@@ -117,7 +117,7 @@ document.onclick = function () {
   if (onclickTime <= 1) {
     new Audio("mods/"+settings.modsList.mods[settings.modsChoise]+"/music/settingSong.ogg").onloadeddata = function () {
       settings.theme = new Audio("mods/"+settings.modsList.mods[settings.modsChoise]+"/music/settingSong.ogg")
-      settings.theme.play()
+      //settings.theme.play()
       settings.theme.loop = true;
     }
   }
@@ -125,6 +125,14 @@ document.onclick = function () {
 
 
 function loadSetting() {
+  var newPlayer = false;
+  
+  if (localStorage.getItem("FM : newPlayer?") == null) {
+    localStorage.setItem("FM : newPlayer?",false);
+    newPlayer = true;
+  }
+  
+  
   for (var i = 0; i < settings.settingsList.length; i++) {
     const name = settings.settingsList[i][0];
     const type = settings.settingsList[i][4];
@@ -137,8 +145,20 @@ function loadSetting() {
 
     SE.innerText = settings.settingsList[i][0];
     
+    if (type == "options") {
+      if (newPlayer) {
+        FMD_setStorage("FM : "+name,settings.settingsList[i][6])
+        SE.innerText = settings.settingsList[i][0] + " - "+settings.settingsList[i][6]
+      } else {
+        SE.innerText = settings.settingsList[i][0] + " - "+FMD_getStorage("FM : "+name,settings.settingsList[i][0]);
+      }
+    }
+    
     if (name == "setting key") {
-      SE.innerText = "setting key - "+FMD_getStorage(name)
+      if (newPlayer) {
+        FMD_setStorage("FM : "+name,settings.settingsList[i][5])
+      }
+      SE.innerText = "setting key - "+FMD_getStorage("FM : "+name)
     }
 
     SE.id = settings.settingsList[i][0];
@@ -150,16 +170,24 @@ function loadSetting() {
       }
       
       if (type == "options") {
-        FMD_setStorage("FM : "+name,option[prompt("choise as ["+option+"] |  0 = first, 1 = second")]);
+        var reponse = prompt("choise as ["+option+"] |  0 = first, 1 = second");
+        if (reponse == "" || reponse == " " || reponse == "null") reponse = 0;
+        FMD_setStorage("FM : "+name,option[reponse]);
+        this.innerText = (this.innerText.split("-")[0])+" - "+option[reponse];
       }
       
       if (name == "setting key") {
         FMD_setStorage("FM : "+name,prompt("left","d")+prompt("left","f")+prompt("left","j")+prompt("left","k"));
         document.getElementById(name).innerText = "setting key - "+FMD_getStorage("FM : "+name)
       }
+      
+      if (name == "notes fps") {
+        FMD_setStorage("FM : " + name,prompt("fps"));
+        document.getElementById(name).innerText = "notes fps - " + FMD_getStorage("FM : " + name)+"fps"
+      }
     }
     
-    if (type == "boolean") {
+    if (type == "boolean" && !newPlayer) {
       if (FMD_getStorage('FM : '+SE.id) !== null) {
         if (FMD_getStorage('FM : '+SE.id) == "true") {
           SE.style = "z-index: 2; font-size: 10px; color: white; position: absolute; left: 250px; top: "+settings.settingsList[i][2]+"px; width: 200px; background-Color: #5050507D; border-radius: 2px; padding: 5px; border: 2px solid green";
@@ -169,6 +197,16 @@ function loadSetting() {
       } else {
         FMD_setStorage("FM : screen bounce on beatHit",false)
       }
+    }
+    
+    if (type == "boolean" && newPlayer) {
+      alert(settings.settingsList[i][6])
+      if (settings.settingsList[i][6] == true) {
+        SE.style = "z-index: 2; font-size: 10px; color: white; position: absolute; left: 250px; top: " + settings.settingsList[i][2] + "px; width: 200px; background-Color: #5050507D; border-radius: 2px; padding: 5px; border: 2px solid green";
+      } else {
+        SE.style = "z-index: 2; font-size: 10px; color: white; position: absolute; left: 250px; top: " + settings.settingsList[i][2] + "px; width: 200px; background-Color: #5050507D; border-radius: 2px; padding: 5px; border: 2px solid red";
+      }
+      FMD_setStorage('FM : ' + SE.id,settings.settingsList[i][6]);
     }
   }
   
@@ -185,7 +223,8 @@ function settingButtons(localStorageId,id) {
       document.getElementById(id).style.border = "2px solid green"
     }
   } else {
-    FMD_setStorage(localStorageId,true)
+    FMD_setStorage(localStorageId,true);
+    document.getElementById(id).style.border = "2px solid green";
   }
 }
 
