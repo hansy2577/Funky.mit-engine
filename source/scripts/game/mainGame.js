@@ -3,11 +3,19 @@ if (sessionStorage.getItem("game") == undefined) {
   PreError("fail to get data from 'menu.html', try again", false, true)
 }
 
+document.body.id = Math.random()*1000;  // avoild to the name confly
+
 global.tab = "game";
 
 let game = {
   canStart: false,
   isStarting: false,
+  
+  game: document.getElementById("GAME"),
+  gui: document.getElementById("GUI"),
+  ranks: document.getElementById("ranks"),
+  
+  extensions: [],
   
   scores: 0,
   missed: 0,
@@ -16,7 +24,15 @@ let game = {
     spaceForLive: false
   },
   
+  dadName: null,
+  bfName: null,
+  gfName: null,
+  
   characters: {
+    dad: document.getElementById("Dad"),
+    bf: document.getElementById("Boyfriend"),
+    gf: document.getElementById("Girlfriend"),
+    
     gfIdAnim: {
       NR: "gf NR",
       NL: "gf NL"
@@ -46,17 +62,17 @@ let game = {
   healthBars: {
     bumpIcon: true,
     
-    icon: {
+    iconPosition: {
       minPos: -95,
       maxPos: 85
     },
     
-    data: {
-      bar: null,
-    
-      bf: null,
-      dad: null
-    }
+    value: null,
+    score: null,
+    missed: null,
+    bar: null,
+    bfIcon: null,
+    dadIcon: null 
   },
 
   BPM: {
@@ -67,6 +83,7 @@ let game = {
   },
   
   song: {
+    timer: 0,
     onEnded: false,
     name: null,
     difficulties: null,
@@ -102,6 +119,9 @@ let game = {
   notesOpponent:[null,null,null,null],
   
   notesDefaultPosition: 0,
+  
+  notesOpponentGroup: document.getElementById("notes opponent"),
+  notesGroup: document.getElementById("notes"),
   
   notesSpeed: null,
   
@@ -190,6 +210,8 @@ if (game.settings.devMods) {
 
 //load game mods
 
+function loadStorageData() {
+
 if (FMD_getStorage("FM : gameMods : spaceForLive") == "true") {
   game.gameMods.spaceForLive = true;
   FMS_playScript("spaceForLive",["scripts/game/gameModifiers/pressSpace.js"],false);
@@ -223,6 +245,7 @@ if (game.settings.devMods == false && sessionStorage.getItem("FM : Botplay") !==
   }
 }
 
+}
 
 // get file get file get file get file get...
 
@@ -231,22 +254,17 @@ try {
 getMainJson(o[0])
 
 function getMainJson(yourmods) {
-  // get the json file
-  var rawFile = new XMLHttpRequest();
-  var reload = 0;
-  
-  rawFile.open("get","mods/"+yourmods+"/meta.json", true);
-  rawFile.onreadystatechange = function() {
-    reload++;
-    if (rawFile.readyState === 4) {
-      var allText = rawFile.responseText;
-    }
-    
-    if (reload == 3) {
-      if (allText == "Error 404, file not found.") {
-        PreError("getMainJson | no mods found or no main json found"+allText, false, true)
-      } else {
-        game.mainData = JSON.parse(allText);
+  var r = new XMLHttpRequest();
+  var l = "mods/"+yourmods+"/meta.json";
+  r.open("GET",l); r.onload = function () { 
+    if (r.responseText == "Error 404, file not found." || r.responseText == "" || r.responseText == null) {
+      // when onError or null
+      
+      PreError("getMainJson","fail to load the mods '"+yourmods+".json'",l,"mainGame","Null file found, .....",{ toMenu: true });
+    } else {
+      // on load
+      
+        game.mainData = JSON.parse(r.responseText);
         
         game.modsSelect = yourmods;
         game.songSelect = o[1];
@@ -260,119 +278,136 @@ function getMainJson(yourmods) {
         game.charaIconFolder = game.imagesFolder+"/"+FMS_folder.imagesFolders.charactersIcon;
         game.soundsFolder = "mods/"+game.modsSelect+"/"+FMS_folder.sounds;
         
-        getMetadataJson();
-        getChartJson();
+        getExtension()
+      }
+  }
+  r.send();
+}
+
+function getExtension() {
+  var r = new XMLHttpRequest();
+  var l = "extensions/.extension";
+  r.open("GET", l);
+  r.onload = function() {
+    if (r.responseText == "Error 404, file not found." || r.responseText == "" || r.responseText == null) {
+      // when onError or null
+      
+      PreError("getExtension", "fail to load the '.extension' file", l, "mainGame", "null found, did you remove it thinking it was useless :/ ?", { toMenu: true });
+    } else {
+      // on load
+      
+      game.extensions = r.responseText.split("\n");
+        
+      for (var i = 0; i < game.extensions.length; i++) {
+        game.extensions[i] = game.extensions[i].substr(1,game.extensions[i].length)
+
+        var tscript2 = document.createElement("script");
+        tscript2.src = "extensions/"+game.extensions[i];
+        document.body.appendChild(tscript2);
+          
+        if (i >= game.extensions.length - 1) {
+          getMetadataJson();
+          getChartJson();
+            
+          setTimeout(() => {
+            loadStorageData();
+          },1000)
+        }
       }
     }
   }
-  rawFile.send();
+  r.send();
 }
 
 function getMetadataJson() {
-  // get the json file
-  var rawFile = new XMLHttpRequest();
-  var reload = 0;
-  
-  rawFile.open("get", game.songFolder+"/metadata.json", true);
-  rawFile.onreadystatechange = function() {
-    reload++;
-    if (rawFile.readyState === 4) {
-      var allText = rawFile.responseText;
-    }
-    
-    if (reload == 3) {
+  var r = new XMLHttpRequest();
+  var l = game.songFolder+"/metadata.json";
+  r.open("GET",l); r.onload = function () { 
+    if (r.responseText == "Error 404, file not found." || r.responseText == "" || r.responseText == null) {
+      // when onError or null
       
-      if (allText == "Error 404, file not found." && allText == "") {
-        PreError("getMetadataJson | fail to get the file, reson: "+allText, false, true)
-      } else {
-        game.song.metadata = JSON.parse(allText)
+      PreError("getMetadataJson","fail to load 'metadata.json'",l,"mainGame","Null metadata found, so add the metadata.json the next time",{ toMenu: true });
+    } else {
+      // on load
+      
+ 
+      game.song.metadata = JSON.parse(r.responseText)
         
-        game.notesSpeed = game.song.metadata.chart.speed;
+      game.notesSpeed = game.song.metadata.chart.speed;
         
-        game.BPM.currentBPM = game.song.metadata.chart.BPM;
-        game.canStart = true;
+      game.dadName = game.song.metadata.assets.characters[2];
+      game.gfName = game.song.metadata.assets.characters[1];
+      game.bfName = game.song.metadata.assets.characters[0];
         
-        getStageData(game.song.metadata.assets.stage)
-        getNotesData(game.song.metadata.assets["notes skin"])
-        onPreLoad()
-      } 
+      game.BPM.currentBPM = game.song.metadata.chart.BPM;
+      game.canStart = true;
+        
+      getStageData(game.song.metadata.assets.stage)
+      getNotesData(game.song.metadata.assets["notes skin"])
+      onPreLoad()
     }
   }
-  rawFile.send();
+  r.send();
 }
+
 
 function getChartJson() {
-  // get the json file
-  var rawFile = new XMLHttpRequest();
-  var reload = 0;
-  rawFile.open("get", game.songFolder+"/chart.FM", true);
-  rawFile.onreadystatechange = function() {
-    reload++;
-    if (rawFile.readyState === 4) {
-      var allText = rawFile.responseText;
-    }
-    
-    if (reload == 3) {
-      if (allText == "Error 404, file not found.") {
-        PreError("getChartJson | fail to get tha chart , reson: "+allText, false, true)
-      } else {
-        game.song.chart = JSON.parse(allText)
-      }
+  var r = new XMLHttpRequest();
+  var l = game.songFolder+"/chart.FM";
+  r.open("GET",l); r.onload = function () { 
+    if (r.responseText == "Error 404, file not found." || r.responseText == "" || r.responseText == null) {
+      // when onError or null
+      
+      PreError("getChartJson","fail to load 'chart.FM'",l,"mainGame","Null chart found, i think you can't funkin on friday without bf scripts xd",{ toMenu: true });
+    } else {
+      // on load
+      
+      game.song.chart = JSON.parse(r.responseText)
     }
   }
-  rawFile.send();
+  r.send();
 }
 
+
 function getStageData(link) {
-  // get the json file
-  var rawFile = new XMLHttpRequest();
-  var reload = 0;
-  rawFile.open("get", game.modsFolder+"/"+FMS_folder.stages+"/"+link+".json", true);
-  rawFile.onreadystatechange = function() {
-    reload++;
-    if (rawFile.readyState === 4) {
-      var allText = rawFile.responseText;
-    }
-    
-    if (reload == 3) {
-      if (allText == "Error 404, file not found.") {
-        PreError("getStageJson | fail to get the file, reson: "+allText, false, true)
-      } else {
-        game.stage.data = JSON.parse(allText)
-        loadStage(JSON.parse(allText))
-        
-      }
+  var r = new XMLHttpRequest();
+  var l = game.modsFolder + "/" + FMS_folder.stages + "/" + link + ".json";
+  r.open("GET",l); r.onload = function () { 
+    if (r.responseText == "Error 404, file not found." || r.responseText == "" || r.responseText == null) {
+      // when onError or null
+      
+      PreError("getStageData","fail to load '"+link+".json'",l,"mainGame","Null file found, the void is real !!!1!1!",{ toMenu: true });
+    } else {
+      // on load
+      
+      game.stage.data = JSON.parse(r.responseText);
+      loadStage(game.stage.data);
     }
   }
-  rawFile.send();
+  r.send();
 }
 
 function getNotesData(link) {
-  // get the json file
-  var rawFile = new XMLHttpRequest();
-  var reload = 0;
-  rawFile.open("get", game.modsFolder+"/"+FMS_folder.imagesName+"/"+FMS_folder.imagesFolders.noteSkin+"/"+link+"/main.json", true);
-  rawFile.onreadystatechange = function() {
-    reload++;
-    if (rawFile.readyState === 4) {
-      var allText = rawFile.responseText;
-    }
-    
-    if (reload == 3) {
-      if (allText == "Error 404, file not found.") {
-        PreError("getNotesJson | fail to get the file, reson: "+allText, false, true)
-      } else {
-        game.notesSkinData = JSON.parse(allText)
-        game.notesSkinSelecte = link;
+  var r = new XMLHttpRequest();
+  var l = game.modsFolder+"/"+FMS_folder.imagesName+"/"+FMS_folder.imagesFolders.noteSkin+"/"+link+"/main.json";
+  r.open("GET",l); r.onload = function () { 
+    if (r.responseText == "Error 404, file not found." || r.responseText == "" || r.responseText == null) {
+      // when onError or null
+      
+      PreError("getNotesData","fail to load '"+link+".json'",l,"mainGame","Null file found,it not a rythme game without notes -bf",{ toMenu: true });
+    } else {
+      // load
+      
+      game.notesSkinData = JSON.parse(r.responseText)
+      game.notesSkinSelecte = link;
         
-        makeNote(153,"player"); // default is 270
-        makeNote(-40,"opponent"); // default is 153
+      makeNote(153,"player"); // default is 270
+      makeNote(-40,"opponent"); // default is 153
         
-        NotesScriptLoop()
-      }
+      NotesScriptLoop()
     }
   }
-  rawFile.send();
+  r.send();
 }
 
 
@@ -400,6 +435,14 @@ function loadStage(data) {
     game.stage.BG.style.zIndex = -10;
   }
   }
+  
+  if (data.characters["fixe cam"][0]) {
+    document.getElementById("GAME").style.left = data.characters["fixe cam"][1][0]+"px";
+    document.getElementById("GAME").style.top = data.characters["fixe cam"][1][1]+"px";
+  }
+  
+  document.getElementById("GAME").style.scale = data["stage Zooms"]
+  
   getCharacters();
   loadPauseMenu();
 }
@@ -465,6 +508,7 @@ function onPreLoad() { if (antiLoop == 0 ) {
   //gameEvents()
   
   antiLoop++;
+  
 }}
 
 var songLoadedVerifier_value = 0;
@@ -491,15 +535,25 @@ function songLoadedVerifier() {
 }
 
 function endLoading() {
-  var somethingRandom = setInterval(() => {
+  setTimeout(() => {
+    if (game.isStarting == false) {
+      onGameInit();
+    }
+  },1000)
+  
+  setTimeout(() => {
     if (game.isStarting == false) {
       document.getElementById("loadingS").remove()
-      clearInterval(somethingRandom)
     }
   },3000)
 }
 
+  
+
+
 function startingGlobalGame() {
+  onGameStart();
+  
   gameStart()
   game.isStarting = true;
   document.getElementById("PressFoPlay").remove()
@@ -627,9 +681,10 @@ function camMove(x,y) { // took 1 hours, just for that
     }
   }
 }
+
 function camBeatHit() {
   // auto cam scroll
-  if (game.cam.autoCam == true && game.canMoveNote == true && game.pauseGameState == false && game.canStart == true && game.events.onBeatHit == true) {
+  if (game.cam.autoCam == true && !game.stage.data.characters["fixe cam"][0] && game.canMoveNote == true && game.pauseGameState == false && game.canStart == true && game.events.onBeatHit == true) {
     if /* cam as Dad */ (game.cam.asBf == false) {
       game.cam.x = game.stage.data.characters.cam.Dad[0];
       game.cam.y = game.stage.data.characters.cam.Dad[1];

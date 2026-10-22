@@ -5,22 +5,40 @@ let gameGui_beatHit = false;
 function loadGameGui() {
   let bumpIconType = localStorage.getItem("FM : custom icon bumping");
   
-  game.healthBars.data.bar = document.createElement("img");
-  document.getElementById("GUI").appendChild(game.healthBars.data.bar)
-  game.healthBars.data.bar.src = game.modsFolder + "/images/healthBar.png"
-  game.healthBars.data.bar.style.position = "absolute";
-  game.healthBars.data.bar.style.left = "-5px";
-  game.healthBars.data.bar.style.top = "310px";
-  game.healthBars.data.bar.style.scale = 0.4;
+  game.healthBars.bar = document.createElement("img");
+  document.getElementById("health bars").appendChild(game.healthBars.bar)
+  game.healthBars.bar.src = game.modsFolder + "/images/healthBar.png"
+  game.healthBars.bar.style.position = "absolute";
+  game.healthBars.bar.style.left = "-5px";
+  game.healthBars.bar.style.top = "310px";
+  game.healthBars.bar.style.scale = 0.4;
   
-  let scores = document.createElement("a");
-  document.getElementById("GUI").appendChild(scores)
-  scores.style.position = "absolute";
-  scores.innerText = "absolute";
-  scores.style.left = "70px";
-  scores.style.top = "320px";
-  scores.style.width = "500px"
-  scores.style.scale = 0.5;
+  game.healthBars.value = document.createElement("progress");
+  document.getElementById("health bars").appendChild(game.healthBars.value)
+  game.healthBars.value.id = "healthBar-value"
+  game.healthBars.value.style.cssText = `
+  position: absolute;`
+  
+  game.healthBars.value.style.zIndex = "-1";
+
+  game.healthBars.value.value = 50;
+  game.healthBars.value.max = 100;
+  game.healthBars.value.style.cssText += "-webkit-transform: scaleX(-1); transform: scaleX(-1);"
+  game.healthBars.value.style.left = "56px";
+  game.healthBars.value.style.top = "315px";
+  game.healthBars.value.style.width = "480px"
+  game.healthBars.value.style.height = "10px"
+  game.healthBars.value.style.scale = 0.5;
+
+  
+  game.healthBars.score = document.createElement("a");
+  document.getElementById("GUI").appendChild(game.healthBars.score)
+  game.healthBars.score.style.position = "absolute";
+  game.healthBars.score.innerText = "absolute";
+  game.healthBars.score.style.left = "70px";
+  game.healthBars.score.style.top = "320px";
+  game.healthBars.score.style.width = "500px"
+  game.healthBars.score.style.scale = 0.5;
   
   if (game.settings.botplay) {
     let botplayText = document.createElement("a");
@@ -47,31 +65,31 @@ function loadGameGui() {
   time.style.width = "200px";
   time.style.scale = 0.5;
   
-  let missed = document.createElement("a");
-  document.getElementById("GUI").appendChild(missed)
-  missed.style.position = "absolute";
-  missed.innerText = "absolute";
-  missed.style.left = "300px";
-  missed.style.top = "320px";
-  missed.style.width = "200px"
-  missed.style.scale = 0.5;
+  game.healthBars.missed = document.createElement("a");
+  document.getElementById("GUI").appendChild(game.healthBars.missed)
+  game.healthBars.missed.style.position = "absolute";
+  game.healthBars.missed.innerText = "absolute";
+  game.healthBars.missed.style.left = "300px";
+  game.healthBars.missed.style.top = "320px";
+  game.healthBars.missed.style.width = "200px"
+  game.healthBars.missed.style.scale = 0.5;
   
-  game.healthBars.data.bf = document.createElement("img");
-  document.getElementById("GUI").appendChild(game.healthBars.data.bf)
-  game.healthBars.data.bf.src = game.modsFolder +"/images/icons/"+ game.data.bf.icon + "/0.png";
-  game.healthBars.data.bf.style.position = "absolute";
-  game.healthBars.data.bf.style.left = "50px";
-  game.healthBars.data.bf.style.top = "68px";
-  game.healthBars.data.bf.style.scale = 0.07;
+  game.healthBars.bfIcon = document.createElement("img");
+  document.getElementById("health bars").appendChild(game.healthBars.bfIcon)
+  game.healthBars.bfIcon.src = game.modsFolder +"/images/icons/"+ game.data.bf.icon + "/0.png";
+  game.healthBars.bfIcon.style.position = "absolute";
+  game.healthBars.bfIcon.style.left = "50px";
+  game.healthBars.bfIcon.style.top = "68px";
+  game.healthBars.bfIcon.style.scale = 0.07;
 
-  game.healthBars.data.dad = document.createElement("img");
-  document.getElementById("GUI").appendChild(game.healthBars.data.dad)
-  game.healthBars.data.dad.src = game.modsFolder +"/images/icons/"+ game.data.dad.icon + "/0.png";
-  game.healthBars.data.dad.style.position = "absolute";
-  game.healthBars.data.dad.style.left = "-10px";
-  game.healthBars.data.dad.style.top = "68px";
-  game.healthBars.data.dad.style.scale = 0.07;
-  game.healthBars.data.bf.style.cssText += "-webkit-transform: scaleX(-1); transform: scaleX(-1);"
+  game.healthBars.dadIcon = document.createElement("img");
+  document.getElementById("health bars").appendChild(game.healthBars.dadIcon)
+  game.healthBars.dadIcon.src = game.modsFolder +"/images/icons/"+ game.data.dad.icon + "/0.png";
+  game.healthBars.dadIcon.style.position = "absolute";
+  game.healthBars.dadIcon.style.left = "-10px";
+  game.healthBars.dadIcon.style.top = "68px";
+  game.healthBars.dadIcon.style.scale = 0.07;
+game.healthBars.bfIcon.style.cssText += "-webkit-transform: scaleX(-1); transform: scaleX(-1);"
 
   // v switch the image sens
   
@@ -113,8 +131,8 @@ function loadGameGui() {
           //iconSize -= 0.0002;            
             iconSize = iconSize / 1.008;
             
-            game.healthBars.data.bf.style.scale = iconSize;
-            game.healthBars.data.dad.style.scale = iconSize;
+            game.healthBars.bfIcon.style.scale = iconSize;
+            game.healthBars.dadIcon.style.scale = iconSize;
           }
         }
       }
@@ -135,8 +153,8 @@ function loadGameGui() {
           //iconSize -= 0.0002;            
             iconSize = iconSize / 1.009;
             
-            //game.healthBars.data.bf.style.scale = iconSize;
-            //game.healthBars.data.dad.style.scale = iconSize;
+            //game.healthBars.bfIcon.style.scale = iconSize;
+            //game.healthBars.dadIcon.style.scale = iconSize;
           }
         }
         
@@ -147,11 +165,11 @@ function loadGameGui() {
         if (goldenApple.value2 >= 1.1) {
           goldenApple.value2 = goldenApple.value2 / 1.07;
           
-          game.healthBars.data.dad.style.transform = "scaleY("+goldenApple.value1+")";
-          game.healthBars.data.dad.style.transform += "scaleX("+goldenApple.value2+")";
+          game.healthBars.dadIcon.style.transform = "scaleY("+goldenApple.value1+")";
+          game.healthBars.dadIcon.style.transform += "scaleX("+goldenApple.value2+")";
           
-          game.healthBars.data.bf.style.transform = "scaleY("+goldenApple.value1+")";
-          game.healthBars.data.bf.style.transform += "scaleX(-"+goldenApple.value2 +")";
+          game.healthBars.bfIcon.style.transform = "scaleY("+goldenApple.value1+")";
+          game.healthBars.bfIcon.style.transform += "scaleX(-"+goldenApple.value2 +")";
         }
       }
     }
@@ -164,13 +182,13 @@ function loadGameGui() {
     
     // icon
     
-    game.healthBars.data.dad.style.left = game.health + 28 + "px";
-    game.healthBars.data.bf.style.left = game.health + 63 + "px";
+    game.healthBars.dadIcon.style.left = game.health + 28 + "px";
+    game.healthBars.bfIcon.style.left = game.health + 63 + "px";
     
-    // scores
+    // game.healthBars.score
     
-    scores.innerText = "score :"+game.scores;
-    missed.innerText = "missed :"+game.missed;
+    game.healthBars.score.innerText = "score :"+game.scores;
+    game.healthBars.missed.innerText = "missed :"+game.missed;
     
     // botplay
     
@@ -193,11 +211,11 @@ function iconBeatHit() {
     gameGui_beatHit = false;
     clearInterval(looop);
     
-    if (game.health >= game.healthBars.icon.minPos) {
+    if (game.health >= game.healthBars.iconPosition.minPos) {
       game.health -= 1;
     }
 
-    if (game.health <= game.healthBars.icon.maxPos) {
+    if (game.health <= game.healthBars.iconPosition.maxPos) {
       game.health += 1;
     }
   },50)
@@ -207,13 +225,16 @@ function FMS_health(value,reset) {
   Frechicon()
   
   if (value <= 0) {
-    if (game.health >= game.healthBars.icon.minPos) {
+    document.getElementById("healthBar-value").value -= value*0.3;
+    if (game.health >= game.healthBars.iconPosition.minPos) {
       game.health += value;
+
     }
   } else {
-    if (game.health <= game.healthBars.icon.maxPos) {
+    if (game.health <= game.healthBars.iconPosition.maxPos) {
       game.health += value;
     }
+    document.getElementById("healthBar-value").value -= value;
   }
 
   if (reset == true) {
@@ -225,15 +246,15 @@ function FMS_health(value,reset) {
 
 function Frechicon() {
   if (game.health >= -70) {
-    game.healthBars.data.dad.src = game.modsFolder +"/images/icons/"+ game.data.dad.icon + "/0.png";
+    game.healthBars.dadIcon.src = game.modsFolder +"/images/icons/"+ game.data.dad.icon + "/0.png";
   } else {
-    game.healthBars.data.dad.src = game.modsFolder +"/images/icons/"+ game.data.dad.icon + "/1.png";
+    game.healthBars.dadIcon.src = game.modsFolder +"/images/icons/"+ game.data.dad.icon + "/1.png";
   }
 
   if (game.health <= 70) {
-    game.healthBars.data.bf.src = game.modsFolder +"/images/icons/"+ game.data.bf.icon + "/0.png";
+    game.healthBars.bfIcon.src = game.modsFolder +"/images/icons/"+ game.data.bf.icon + "/0.png";
   } else {
-    game.healthBars.data.bf.src = game.modsFolder +"/images/icons/"+ game.data.bf.icon + "/1.png";
+    game.healthBars.bfIcon.src = game.modsFolder +"/images/icons/"+ game.data.bf.icon + "/1.png";
   }
 }
 

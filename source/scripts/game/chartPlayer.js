@@ -20,11 +20,12 @@ function playChart_BF(type,chart = game.song.chart) {
   var C = 0;
   var reloadSong = 0;
   var beat = 1;
-  
+
   if (chart == null) {
     alert("error when reading the chart | reason: "+chart)
   } else {
   var loopP = setInterval(() => {
+    game.song.timer = game.song.inst.currentTime;
     if (game.song.inst.currentTime * 1000 >= 500 && reloadSong == 0) {
       // replay the audio
       

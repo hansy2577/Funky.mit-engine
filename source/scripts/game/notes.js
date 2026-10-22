@@ -214,7 +214,7 @@ function generateNotes(type,isLongNote,customNotesSkin = false,spawnTime = game.
       if (isLongNote !== true) {
         var tempoNote = document.createElement("div");
         document.getElementById("notes").appendChild(tempoNote);
-        
+        tempoNote.style.transform = `translateY(1000px)`;
         //tempoNote.style.backgroundColor = "red";
         tempoNote.style.width = "158px";
         tempoNote.style.height = "160px";
@@ -223,6 +223,7 @@ function generateNotes(type,isLongNote,customNotesSkin = false,spawnTime = game.
         tempoNote.style.zIndex += 1;
         tempoNote.style.position = "absolute";
         tempoNote.style.visiblility = "visible";
+        
         if (customNotesSkin !== false) {
           console.log(customNotesSkin+"0")
           tempoNote.style.backgroundImage = "url("+customNotesSkin+")";
@@ -237,7 +238,7 @@ function generateNotes(type,isLongNote,customNotesSkin = false,spawnTime = game.
         // long note
         var tempoNote = document.createElement("div");
         document.getElementById("notes").appendChild(tempoNote);
-    
+        tempoNote.style.transform = `translateY(1000px)`;
         tempoNote.style.width = "158px";
         tempoNote.style.height = "160px";
     
@@ -272,7 +273,7 @@ function generateNotes(type,isLongNote,customNotesSkin = false,spawnTime = game.
         }
       }
       
-      var Y = 335;
+      var Y = 635;
       var tempN = 0;
       var play = true;
       var pressed = false;
@@ -511,7 +512,7 @@ function generateNotes(type,isLongNote,customNotesSkin = false,spawnTime = game.
 }
 
 function generateDadNotes(type,isLongNotes = false){
-  var wait = setInterval(() => {
+  var wait = setTimeout(() => {
     if (type !== 3) {
       var timeD = 100;
       if (isLongNotes == true) {
@@ -526,16 +527,11 @@ function generateDadNotes(type,isLongNotes = false){
       game.notesOpponent[type - 4].style.scale = game.notesSkinData.scales - 0.04;
       game.notesOpponent[type - 4].style.filter = "brightness(" + 30 + "%)";
     
-      var wait2 = setInterval(() => {
+      var wait2 = setTimeout(() => {
         game.notesOpponent[type - 4].style.opacity = 0.5;
         game.notesOpponent[type - 4].style.scale = game.notesSkinData.scales;
         game.notesOpponent[type - 4].style.filter = "brightness(" + 100 + "%)";
-        
-        clearInterval(wait2)
-        clearInterval(wait)
       },timeD)
-    } else {
-      clearInterval(wait)
     }
   },520)
 }
@@ -588,7 +584,7 @@ function makeLongNotes(type,L,spawnTime) {
   if (L >= 1) {
   var mb = setInterval(() => {
     
-    if (value >= L * 0.65) {
+    if (value >= L * 0.7) {
       clearInterval(mb);
     }
     
