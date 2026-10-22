@@ -1,12 +1,21 @@
 let global = {
-  version: "5.7",
+  version: "6.2",
   tab: "menu",
   frameLimite: 20,
   pauseGameState: false
 }
 
-function PreError(message,stopGame,toMenu) {
-  alert("error | "+message)
+function PreError(scriptsFunction,description,path,scriptLocation,reason,{ stopGame = false, toMenu = true }) {
+  var text = "|[ " + scriptsFunction + " ]| " +
+  " \n* Path: '" + path +
+  "' \n* Description: " + description +
+  " \n* reason: '" + reason +
+  "' \n \n Scripts-src : '" + scriptLocation + ".js' / vF.M : '" + global.version + "' / tab : '" + global.tab + "' \n save in clipBoard ?";
+  var t = window.confirm(text);
+  if (t) {
+    navigator.clipboard.writeText((text+"")) // save the error
+  }
+
   if (stopGame == true) {
     document.body.remove()
     window.close()
@@ -139,5 +148,3 @@ document.addEventListener('keydown', function(event) {
     transition(3)
   }
 });
-
-
