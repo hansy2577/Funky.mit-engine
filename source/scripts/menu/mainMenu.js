@@ -104,6 +104,7 @@ function backSound() {
 }
 
 function selectionnedSound(id) {
+  whiteFlash()
   if (!menu.selecte) {
   menu.selecte = true;
   new Audio("mods/" + menu.modsList.mods[menu.modsChoise] + "/sounds/confirmMenu.ogg").play()
@@ -187,4 +188,25 @@ function getImagesVerification(id,param) {
       clearInterval(lopp);
     }
   },0)
+}
+
+var e =0;
+setInterval(() => {
+  e++;
+  document.getElementById("menuBG").style.top = ((Math.sin(e * 0.007) * 5) - 0) + "px"
+}, 5)
+
+
+function whiteFlash() {
+  if (localStorage.getItem("FM : flashLight") == "true") {
+    const s = FMS_makeElement("", -40, -10, 5, 1000, 400);
+    s.style.zIndex = 20;
+    s.style.backgroundColor = "white";
+    s.id = Math.random()
+    
+    FMS_makeCSSanim(s.id, 0.6, "ease", 1,
+      [{ opacity: 1 }, { opacity: 0 }]).onfinish = function() {
+      s.remove()
+    }
+  }
 }
