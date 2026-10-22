@@ -24,6 +24,14 @@ let menu = {
 }
 
 // freeplay()
+ //eruda.init();
+ 
+ 
+var e = 0;
+setInterval(() => {
+  e++;
+  document.getElementById("freeplayBG").style.top = ((Math.sin(e * 0.007) * 5) - 0) + "px"
+}, 5)
 
 global.tab = "freeplay";
 sessionStorage.setItem("game title","Funky.mit engine | Freeplay")
@@ -202,6 +210,8 @@ function freeplay() {
   }
   
   document.getElementById(`difficult`).innerText = "‹ "+menu.songList.song.data[Object.keys(menu.songList.song.data)[menu.position]].difficulties[menu.difficulties_value]+" ›";
+  
+  difficult();
 }
 
 function StartFreakyMusic() {
@@ -428,6 +438,7 @@ function play() {
   sessionStorage.setItem("game",'["'+menu.modsList.mods[menu.modsChoise]+'","'+Object.keys(menu.songList.song.data)[menu.position]+'","'+menu.songList.song.data[Object.keys(menu.songList.song.data)[menu.position]].difficulties[menu.difficulties_value]+'"]')
   menu.selectionNeed = true;
   selectionnedSound()
+  whiteFlash();
 }
 
 function difficult() {
@@ -527,6 +538,7 @@ function changeModsSelect2() {
 }
 
 function updateAlbums() {
+  document.getElementById("albumsBG").style.border = "5px solid "+menu.songList.song.data[Object.keys(menu.songList.song.data)[menu.position]].color
   document.getElementById("albumsImages").src = "mods/"+menu.modsList.mods[menu.modsChoise]+"/"+FMS_folder.imagesName+"/"+FMS_folder.imagesFolders.albums+"/"+menu.songList.song.data[Object.keys(menu.songList.song.data)[menu.position]].albums+".png"
 }
 
@@ -561,6 +573,21 @@ function settingTab() {
     document.getElementById("settingSelect").style.backgroundColor = "#00000052";
     FMS_makeCSS_Ypos("settings",0.05,[0,5],"ease-in",1).onfinish = function () {
       document.getElementById("settings").style.visibility = "hidden";
+    }
+  }
+}
+
+
+function whiteFlash() {
+  if (localStorage.getItem("FM : flashLight") == "true") {
+    const s = FMS_makeElement("", -40, -10, 5, 1000, 400);
+    s.style.zIndex = 20;
+    s.style.backgroundColor = "white";
+    s.id = Math.random()
+    
+    FMS_makeCSSanim(s.id, 0.6, "ease", 1,
+      [{ opacity: 1 }, { opacity: 0 }]).onfinish = function() {
+      s.remove()
     }
   }
 }
