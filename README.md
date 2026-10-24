@@ -215,6 +215,6 @@ more in the wiki [here](https://hansy2577.github.io/Funkin.mit-wikigine/)
 - [ ] add all FNF source
 - [x] add options tab
 - [x] better default mods 
-- [ ] cutscene system
+- [x] cutscene system
 - [X] funny song
   
