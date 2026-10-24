@@ -1,5 +1,4 @@
 <img width="500" alt="image" src="https://github.com/hansy2577/Funky.mit-engine/blob/main/arts/F.M logo.png" />
-<script type="text/javascript" src="https://counter.websiteout.com/js/24/0/0/0"></script>
 ___
 <img width="1196" height="698" alt="image" src="https://github.com/hansy2577/Funky.mit-engine/blob/main/arts/peak%20menu-v6.1.png" />
 
